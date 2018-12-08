@@ -4,18 +4,28 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: null,
+      eth: null,
+      rub: null
     };
   }
 
   componentDidMount() {
     fetch('https://api.coinmarketcap.com/v1/ticker/ethereum/')
       .then(response => response.json())
-      .then(data => this.setState({data: data}));
+      .then(data => this.setState({eth: data}));
+
+    fetch('https://www.cbr-xml-daily.ru/daily_json.js')
+      .then(response => response.json())
+      .then(data => this.setState({rub: data}));
   }
   render() {
-    let price = this.state.data === null? 'подождите...' : `ETH ${this.state.data[0].price_usd} usd`;
-    return <div>{price}</div>
+    let price = this.state.eth === null? 'подождите...' : `ETH ${this.state.eth[0].price_usd} usd`;
+    let usd = (this.state.rub === null)? 'подождите...' : this.state.rub;
+    let usdToRub = usd.Valute === undefined? '' : usd.Valute.USD.Value;
+
+    return <div>{price}
+      <p>price USD : {usdToRub}</p>
+    </div>
   }
 }
 
