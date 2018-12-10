@@ -1,0 +1,15 @@
+.panel {
+  position: relative;
+}
+
+.block {
+  width: 30px;
+  position: absolute;
+  left: 382px;
+  top: 23px;
+  border: 1px solid black;
+  text-align: center;
+}
+.block p:hover {
+  background-color: green;
+}
