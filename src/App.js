@@ -10,6 +10,7 @@ class App extends React.Component {
   };
 
   componentDidMount() {
+    
     fetch('https://api.coinmarketcap.com/v1/ticker/ethereum/')
       .then(response => response.json())
       .then(data => this.setState({eth: data}))
