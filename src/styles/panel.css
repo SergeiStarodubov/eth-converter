@@ -2,14 +2,26 @@
   position: relative;
 }
 
-.block {
-  width: 30px;
-  position: absolute;
-  left: 382px;
-  top: 23px;
-  border: 1px solid black;
-  text-align: center;
+#usd {
+  cursor: pointer;
 }
-.block p:hover {
-  background-color: green;
+#usd:hover{
+  color: #141414;
+}
+.block p {
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+.fiat, #eth {
+  font-size: 20px;
+  font-weight: 500;
+  color: #343434;
+  line-height: 50px;
+}
+
+.input {
+  height: 20px;
+  border-radius: 10px;
+
 }

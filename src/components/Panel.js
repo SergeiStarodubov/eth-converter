@@ -14,26 +14,14 @@ class Panel extends React.Component {
   }
 
   chooseCurrency = (e) => {
-    window.onclick = (e) => {
-      if (!e.target.classList.contains('fiat')) {
-        this.setState({block: 'none'});
-    } else {
-      this.setState({block: 'block'});
-      }
-    }
-  }
-
-  putFiatInPanel = (e) => {
-    this.state.currency = e.target.innerHTML;
-    this.setState({currency: this.state.currency});
-    window.onclick = (e) => {
-      e.preventDefault();
-    }
-    this.setState({block: 'none'});
-    if (this.state.currency === 'RUB') {
+    if (this.state.currency === 'USD') {
+      this.state.currency = 'RUB';
+      this.setState({currency: this.state.currency});
       this.state.inputFiat = (+this.state.inputETH)*(+this.props.eth* +this.props.usd);
       this.setState({inputFiat: this.state.inputFiat.toFixed(2)});
     } else {
+      this.state.currency = 'USD';
+      this.setState({currency: this.state.currency});
       this.state.inputFiat = (+this.state.inputETH)*(+this.props.eth);
       this.setState({inputFiat: this.state.inputFiat.toFixed(2)});
     }
@@ -73,18 +61,24 @@ class Panel extends React.Component {
 
   render() {
 
+    const css = {
+      fontSize: '20px',
+      width: '175px',
+      paddingLeft: '5px',
+      height: '25px',
+      marginRight: '5px',
+      color: '#343434',
+      boxShadow: '0px 0px 10px 1px rgba(255,255,255,1)'
+    };
+
     return (
+
       <div className = 'panel'>
 
         <p>
-          <input type="text" value = {this.state.inputETH} onChange = {this.handleInputETH} /><span>ETH</span> <input type="text" onChange = {this.handleInputFiat} value = {this.state.inputFiat} />
-          <span className = 'fiat' ref = {this.fiat} onClick = {this.chooseCurrency}>{this.state.currency}</span>
+          <input className = 'input' type="text" value = {this.state.inputETH} onChange = {this.handleInputETH} style = {css} /><span id = 'eth'>ETH</span> <input className = 'input' type="text" onChange = {this.handleInputFiat} value = {this.state.inputFiat} style = {css}/>
+          <span id = 'usd' className = 'fiat' ref = {this.fiat} onClick = {this.chooseCurrency}>{this.state.currency}</span>
         </p>
-
-        <div className = 'block fiat' style = {{display: this.state.block}}>
-          <p className = 'fiat' onClick = {this.putFiatInPanel}>USD</p>
-          <p className = 'fiat' onClick = {this.putFiatInPanel}>RUB</p>
-        </div>
 
       </div>
     );

@@ -1,0 +1,12 @@
+body {
+  background: linear-gradient(to right, rgba(125,204,193,1) 0%, rgba(79,194,179,1) 23%, rgba(22,181,162,1) 51%, rgba(1,132,117,1) 99%);
+}
+
+#root {
+  width: 450px;
+  margin: 0 auto;
+
+}
+p {
+  cursor: default;
+}
